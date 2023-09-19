@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Challenge</title>
+</head>
+<body>
+    <h1>{{ challenge.title }}</h1>
+
+    <h2>Description:</h2>
+    <p>{{ challenge.description }}</p>
+
+    <h2>Challenge Code Template:</h2>
+    <pre>{{ challenge.code_template }}</pre>
+
+    <h2>Sample Inputs:</h2>
+    <ul>
+        {% for sample in challenge.sample.all %}
+        <li><b>Data Type:</b> {{ sample.input_data_type }}</li>
+        <pre>{{ sample.input_data }}</pre>
+        {% endfor %}
+    </ul>
+
+    <h2>Your Solution:</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="code_solution" rows="10" cols="50"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
